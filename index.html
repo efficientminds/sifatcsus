@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Investment Fund — CSU Sacramento</title>
+  <meta name="description" content="Student Investment Fund (SIF) at California State University, Sacramento — learn, manage a real-money portfolio, and join a community of aspiring investors." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1020; --bg-soft:#131a33; --card:#0f162b; --text:#e7ecff; --muted:#a9b1d6; --brand:#7aa2f7; --accent:#a6da95; --danger:#f7768e; --ring: 0 0 0 3px rgba(122,162,247,.35);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --radius: 16px;
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body{ margin:0; font-family: var(--sans); color:var(--text); background: radial-gradient(1200px 600px at 10% -10%, #1b2552 0%, transparent 60%),
+                                      radial-gradient(1000px 600px at 110% 10%, #15204a 0%, transparent 50%),
+                                      var(--bg); }
+    a{ color: var(--brand); text-decoration: none }
+    a:hover{ text-decoration: underline }
+    header{ position: sticky; top:0; backdrop-filter: blur(10px); background: rgba(11,16,32,.6); border-bottom:1px solid #1f2747; z-index: 40 }
+    .container{ max-width: 1000px; margin: 0 auto; padding: 0 20px }
+    .nav{ display:flex; align-items:center; gap:16px; padding: 14px 0 }
+    .nav .spacer{ flex:1 }
+    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius: 999px; background: linear-gradient(180deg, #27345f, #1a2447); color:var(--text); border:1px solid #2a3562 }
+    .btn:hover{ box-shadow: var(--ring) }
+    .ghost{ background: transparent; border-color:#35427a }
+    .hero{ padding: 64px 0 24px; display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center }
+    .hero h1{ font-size: clamp(32px, 4vw, 56px); line-height:1.05; margin:0 0 14px }
+    .hero p{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted) }
+    .hero .card{ background: linear-gradient(180deg, #121a34, #0d142b); border:1px solid #22305c; border-radius: var(--radius); padding: 20px }
+    .grid{ display:grid; gap:16px }
+    .grid.cols-3{ grid-template-columns: repeat(3, 1fr) }
+    .grid.cols-2{ grid-template-columns: repeat(2, 1fr) }
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr } .grid.cols-3{ grid-template-columns: 1fr } .grid.cols-2{ grid-template-columns: 1fr } }
+
+    h2{ font-size: clamp(24px, 2.8vw, 30px); margin: 32px 0 12px }
+    h3{ font-size: 18px; margin: 0 0 6px }
+    .card{ background: linear-gradient(180deg, #121a34, #0d142b); border:1px solid #22305c; border-radius: var(--radius); padding: 16px }
+    .muted{ color: var(--muted) }
+    .kpi{ display:flex; align-items: baseline; gap: 8px }
+    .kpi .big{ font-size: 28px; font-weight: 700 }
+    .pill{ display:inline-block; font: 12px/1.8 var(--mono); padding: 2px 10px; border-radius: 999px; border:1px solid #314072; color:#c5d1ff; background:#0e1530 }
+    .list{ display:grid; gap:12px; padding:0; margin:0; list-style:none }
+    .list li{ padding:12px; border-radius: 12px; border:1px solid #22305c; background:#0b132b }
+    .footer{ margin-top:40px; padding: 32px 0; color:#b5bde3; border-top:1px solid #1f2747 }
+    .tag{ font: 12px/1.2 var(--mono); color:#9fb4ff }
+    details summary{ cursor: pointer; list-style: none }
+    details[open] summary{ color: var(--accent) }
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <strong>SIF • Sacramento State</strong>
+      <div class="spacer"></div>
+      <a class="btn ghost" href="#join">Join</a>
+      <a class="btn ghost" href="#objective">Objective</a>
+      <a class="btn ghost" href="#resources">Resources</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Student Investment Fund</h1>
+        <p>
+          Hands‑on portfolio management at California State University, Sacramento. Learn by researching companies, pitching ideas, and managing a real‑money fund with a long‑term focus.
+        </p>
+        <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap">
+          <a class="btn" href="#join">Apply to Join</a>
+          <a class="btn ghost" href="#news">Latest posts</a>
+        </div>
+        <div class="grid cols-3" style="margin-top:20px">
+          <div class="card kpi" aria-label="Fund Benchmark">
+            <span class="pill">Benchmark</span>
+            <div class="big">S&amp;P 500</div>
+          </div>
+          <div class="card kpi" aria-label="Target">
+            <span class="pill">Target</span>
+            <div class="big">≥ +1% vs. benchmark</div>
+          </div>
+          <div class="card kpi" aria-label="Risk">
+            <span class="pill">Risk</span>
+            <div class="big">At or below benchmark</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" aria-labelledby="how-it-works">
+        <h3 id="how-it-works">How it works</h3>
+        <ul class="list">
+          <li>
+            <strong>Research</strong>
+            <div class="muted">Analyze companies with qualitative and quantitative methods.</div>
+          </li>
+          <li>
+            <strong>Pitch</strong>
+            <div class="muted">Present investment theses to peers and faculty advisors.</div>
+          </li>
+          <li>
+            <strong>Manage</strong>
+            <div class="muted">Build a diversified portfolio and track performance over time.</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- OBJECTIVE -->
+    <section id="objective" aria-labelledby="objective-title">
+      <h2 id="objective-title">Fund Objective</h2>
+      <p class="muted">
+        The fund seeks long‑term capital appreciation using a blend of active and passive strategies with broad diversification. Performance is evaluated against the S&amp;P 500; the goal is to exceed the index by roughly one percent annually while maintaining risk at or below the benchmark.
+      </p>
+    </section>
+
+    <!-- JOIN -->
+    <section id="join" aria-labelledby="join-title">
+      <h2 id="join-title">Join the Fund</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>General path</h3>
+          <p class="muted">Enroll in the Student Investment Fund course (FIN 160) and participate in SIF Club meetings. Strong performance in finance prerequisites helps you qualify as an analyst.</p>
+          <details>
+            <summary><span class="tag">View common prerequisites</span></summary>
+            <ul class="list" style="margin-top:10px">
+              <li>FIN 101 (Business Finance) with A‑ or better <em>or</em></li>
+              <li>Any one of: FIN 134 (Financial Management), FIN 135 (Investments), FIN 136 (Modern Portfolio Management) with B‑ or better</li>
+              <li>Active SIF Club participation (attendance tracked)</li>
+            </ul>
+          </details>
+        </div>
+        <div class="card">
+          <h3>What you’ll do</h3>
+          <ul class="list">
+            <li>Build models and evaluate businesses</li>
+            <li>Collaborate in analyst teams and write reports</li>
+            <li>Use data terminals and research tools where available</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px">Questions about eligibility or the application cycle? Email the program (below) or speak with the College of Business advising team.</p>
+    </section>
+
+    <!-- NEWS / POSTS -->
+    <section id="news" aria-labelledby="news-title">
+      <h2 id="news-title">From the Blog</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Bloomberg commands &amp; SIF materials</h3>
+          <p class="muted">Pointers to the Bloomberg Lab and the “Student Investment Fund in a Book” reference.</p>
+          <a href="https://sifcsus.wordpress.com/2017/02/17/sif-4e-and-bloomberg-commands-for-the-week/" target="_blank" rel="noopener">Read post ↗</a>
+        </article>
+        <article class="card">
+          <h3>FX risk and oil stocks</h3>
+          <p class="muted">How currency strength and debt denomination shape outcomes for energy companies.</p>
+          <a href="https://sifcsus.wordpress.com/2015/05/15/how-foreign-exchange-risk-affects-oil-stocks/" target="_blank" rel="noopener">Read post ↗</a>
+        </article>
+        <article class="card">
+          <h3>Affordable Care Act: sector opportunities</h3>
+          <p class="muted">A look at policy‑driven shifts in healthcare volume, structure, and regulation.</p>
+          <a href="https://sifcsus.wordpress.com/2013/10/08/aca/" target="_blank" rel="noopener">Read post ↗</a>
+        </article>
+        <article class="card">
+          <h3>Company notes &amp; ratings snapshots</h3>
+          <p class="muted">Examples of brief equity notes and credit highlights compiled by SIF students.</p>
+          <a href="https://sifcsus.wordpress.com/2012/10/14/fitch-rates-amt-credit/" target="_blank" rel="noopener">Read post ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" aria-labelledby="resources-title">
+      <h2 id="resources-title">Resources</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Slide decks &amp; guides</h3>
+          <ul class="list">
+            <li>
+              <strong>“The Process” (slides)</strong>
+              <div class="muted">Overview of research workflow and scoring ideas.</div>
+              <a href="https://sifcsus.wordpress.com/wp-content/uploads/2016/02/20160216_theprocess.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+            </li>
+            <li>
+              <strong>Course objective (handout)</strong>
+              <div class="muted">One‑page summary of objectives, benchmark, and risk target.</div>
+              <a href="https://sifcsus.files.wordpress.com/2012/09/2016h2_fin199_mba299_20161122.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Interested in joining?</h3>
+          <p class="muted">See typical paths into FIN 160 and SIF participation, including prerequisite options and club involvement.</p>
+          <a class="btn" href="https://www.csus.edu/college/business-administration/centers-programs/_internal/_documents/20230425_joinsif.pdf" target="_blank" rel="noopener">Join SIF — overview (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="card">
+        <p class="muted">General inquiries:</p>
+        <ul class="list">
+          <li>Email: <a href="mailto:replace-with-your-sif-email@csus.edu">replace-with-your-sif-email@csus.edu</a></li>
+          <li>College of Business, Sacramento State</li>
+        </ul>
+        <p class="muted">Tip: update the email above in <code>index.html</code> once you set the official address or alias.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container" style="display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap">
+        <div>© <span id="y"></span> Student Investment Fund at Sacramento State</div>
+        <div class="muted">Built for GitHub Pages • <a href="#top">Back to top</a></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }));
+  </script>
+</body>
+</html>
