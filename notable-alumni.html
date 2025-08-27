@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notable Alumni — Student Investment Fund, Sacramento State</title>
+  <meta name="description" content="Scrollable timeline of Student Investment Fund notable alumni by class year." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1020; --bg-soft:#131a33; --card:#0f162b; --text:#e7ecff; --muted:#a9b1d6; --brand:#7aa2f7; --accent:#a6da95; --border:#22305c; --ring:0 0 0 3px rgba(122,162,247,.35);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:var(--sans); color:var(--text); background:
+          radial-gradient(1200px 600px at 10% -10%, #1b2552 0%, transparent 60%),
+          radial-gradient(1000px 600px at 110% 10%, #15204a 0%, transparent 50%), var(--bg)}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky; top:0; backdrop-filter:blur(10px); background:rgba(11,16,32,.6); border-bottom:1px solid #1f2747; z-index:40}
+    .container{max-width:1000px; margin:0 auto; padding:0 20px}
+    .nav{display:flex; align-items:center; gap:16px; padding:14px 0}
+    .spacer{flex:1}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem .95rem; border-radius:999px; background:linear-gradient(180deg, #27345f, #1a2447); color:var(--text); border:1px solid #2a3562}
+    .btn:hover{box-shadow:var(--ring)}
+    .ghost{background:transparent; border-color:#35427a}
+
+    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.05; margin:18px 0}
+    p.lede{color:var(--muted)}
+
+    /* Timeline */
+    .timeline{position:relative; display:grid; grid-template-columns: 1fr; gap:14px; margin:20px 0 60px}
+    .year{position:sticky; top:64px; z-index:5; backdrop-filter: blur(8px); background:rgba(13,20,43,.75); border:1px solid var(--border); padding:8px 12px; border-radius:999px; width:max-content}
+    .cluster{position:relative; padding-left:24px}
+    .cluster:before{content:""; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:#2a3562}
+
+    .alum{position:relative; margin:10px 0 0 0; padding:14px; border-radius:var(--radius); background:linear-gradient(180deg, #121a34, #0d142b); border:1px solid var(--border)}
+    .alum:before{content:""; position:absolute; left:3px; top:20px; width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 3px rgba(122,162,247,.2)}
+    .alum h3{margin:0 0 6px; font-size:18px}
+    .alum .meta{font:12px/1.6 var(--mono); color:#9fb4ff}
+    .alum .role{color:var(--muted)}
+
+    .search{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:10px 0 20px}
+    input[type="search"]{flex:1; min-width:220px; padding:.7rem .9rem; border-radius:10px; border:1px solid var(--border); background:#0b132b; color:var(--text)}
+    .pill{display:inline-block; font:12px/1.9 var(--mono); padding:2px 10px; border-radius:999px; border:1px solid #314072; color:#c5d1ff; background:#0e1530}
+
+    footer{margin:40px 0; color:#b5bde3; border-top:1px solid #1f2747; padding-top:16px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <strong>SIF • Sacramento State</strong>
+      <div class="spacer"></div>
+      <a class="btn ghost" href="./index.html">Home</a>
+      <a class="btn" href="#search">Search alumni</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Notable Alumni</h1>
+    <p class="lede">A curated, living list of Student Investment Fund alumni by class year. Use the search to filter by name, class, company, or location. Links go to public profiles where available.</p>
+
+    <div id="search" class="search">
+      <input id="q" type="search" placeholder="Filter by name, class (e.g., 2022), company, role, or city…" aria-label="Filter alumni" />
+      <span class="pill" id="count">0 shown</span>
+    </div>
+
+    <section id="timeline" class="timeline" aria-live="polite"></section>
+
+    <footer>
+      <div>Corrections or additions? Email <a href="mailto:replace-with-your-sif-email@csus.edu">replace-with-your-sif-email@csus.edu</a>.</div>
+    </footer>
+  </main>
+
+  <script>
+    // --- Data (source: SIF CSUS WordPress Notable Alumni page) ---
+    // Tip: You can append new entries or new years as needed.
+    const data = [
+      {
+        year: 2025,
+        people: [
+          { name: "Andrew Joel Saaverda", class: "SIF 2025", role: "Financial Analyst", org: "TOR Wealth Advisors", location: "Sacramento, California", url: "https://www.linkedin.com/" }
+        ]
+      },
+      {
+        year: 2024,
+        people: [
+          { name: "Edward Auel", class: "SIF 2024", role: "Financial Representative", org: "Fidelity", location: "Orangevale, California", url: "https://www.linkedin.com/" }
+        ]
+      },
+      {
+        year: 2023,
+        people: [
+          { name: "Malon Hughes", class: "SIF 2023", role: "Commercial Real Estate Investment Sales Associate", org: "Matthews Real Estate Investment Services", location: "", url: "https://www.linkedin.com/" },
+          { name: "Ryan Popat", class: "SIF 2023", role: "Associate Product Analyst", org: "LPL Financial", location: "", url: "https://www.linkedin.com/" }
+        ]
+      },
+      {
+        year: 2022,
+        people: [
+          { name: "Fernando Villalon", class: "SIF 2022", role: "Private Debt Investment Officer", org: "CalPERS", location: "Sacramento, California", url: "https://www.linkedin.com/" },
+          { name: "Saphira Tran", class: "SIF 2022", role: "Investment Officer I", org: "CalSTRS", location: "Sacramento, California", url: "https://www.linkedin.com/" },
+          { name: "Anthony Okun", class: "SIF 2022", role: "Client Manager", org: "Capital Planning Advisors", location: "Sacramento, California", url: "https://www.linkedin.com/" },
+          { name: "Kavin Chang", class: "SIF 2022", role: "Public Finance Analyst", org: "Stifel", location: "Los Angeles, California", url: "https://www.linkedin.com/" }
+        ]
+      },
+      {
+        year: 2021,
+        people: [
+          { name: "Fiorella Salvador", class: "SIF 2020/2021", role: "Equities Execution Analyst", org: "Goldman Sachs", location: "Salt Lake City, Utah", url: "" },
+          { name: "Jarnail Shah", class: "SIF 2020/2021", role: "Core Business Operations Consultant", org: "Deloitte", location: "Sacramento, California", url: "" }
+        ]
+      },
+      {
+        year: 2019,
+        people: [
+          { name: "Jessica Chervanev", class: "SIF 2018/2019", role: "Anti-Money Laundering Analyst", org: "Accenture", location: "Sacramento, California", url: "" },
+          { name: "John Cortez", class: "SIF 2018", role: "Associate Finance Analyst", org: "Google", location: "Sunnyvale, California", url: "" }
+        ]
+      },
+      {
+        year: 2017,
+        people: [
+          { name: "Kenny Sekhon", class: "SIF 2017", role: "Senior Financial Analyst", org: "Intel Corporation", location: "", url: "" },
+          { name: "Anthony Wright", class: "SIF 2017", role: "Partner/Founder", org: "Twin Rivers Wealth Management", location: "Sacramento, California", url: "" }
+        ]
+      },
+      {
+        year: 2016,
+        people: [
+          { name: "Dhruv Mehta", class: "SIF 2016", role: "Budget Analyst", org: "Department of General Services (State of California)", location: "Sacramento, California", url: "" },
+          { name: "Vu Nguyen", class: "SIF 2016", role: "Graduate Student", org: "USF — MS in Financial Analysis", location: "San Francisco, California", url: "" }
+        ]
+      },
+      {
+        year: 2015,
+        people: [
+          { name: "Chris Grellas", class: "SIF 2015", role: "Financial Advisor / CFP®", org: "Allworth Financial", location: "Sacramento, California", url: "" },
+          { name: "Joseph Nix IV, CFP®", class: "SIF 2015", role: "Investment Advisor Representative", org: "Nix Wealth Management", location: "Sacramento, California", url: "" },
+          { name: "Spencer Tan", class: "SIF 2015", role: "Financial Analyst", org: "Moss Adams LLP", location: "Sacramento, California", url: "" },
+          { name: "Angela Loomer", class: "SIF 2015", role: "Financial Analyst", org: "PowerSchool Group LLC", location: "Roseville, California", url: "" }
+        ]
+      },
+      {
+        year: 2014,
+        people: [
+          { name: "Andrew Cross", class: "SIF 2014", role: "Tech E&O, Cyber & Media Underwriting Specialist", org: "CNA Insurance", location: "San Francisco Bay Area, California", url: "" },
+          { name: "Aliaksandr Chouzhyk, MBA", class: "SIF 2014", role: "Analyst", org: "Pavilion Alternatives Group", location: "Rancho Cordova, California", url: "" },
+          { name: "Nowar Kayali, MBA", class: "SIF 2014", role: "Financial Analyst", org: "Intel Corporation", location: "Sacramento, California", url: "" },
+          { name: "Diana Levko", class: "SIF 2014", role: "Middle Market Underwriter", org: "CNA Insurance", location: "San Francisco, California", url: "" },
+          { name: "David Lopez", class: "SIF 2014", role: "Investor / Professional Trader", org: "", location: "Sacramento, California", url: "" }
+        ]
+      },
+      {
+        year: 2013,
+        people: [
+          { name: "Dominic Anton, CFP®", class: "SIF 2013", role: "Financial Advisor", org: "Crumley & Associates", location: "Fair Oaks, California", url: "" },
+        	{ name: "Madison Doris, MBA", class: "SIF 2013", role: "Investment Officer", org: "CalPERS", location: "Sacramento, California", url: "" },
+        	{ name: "Michael Fabbrini, MBA", class: "SIF 2013", role: "Pacific Region Finance Manager", org: "United Natural Foods", location: "Folsom, California", url: "" },
+          { name: "Rachel Kenney", class: "SIF 2013", role: "Financial Advisor", org: "Edward Jones", location: "Auburn, California", url: "" },
+          { name: "David Kim", class: "SIF 2013", role: "Consultant", org: "Deloitte Consulting", location: "Washington, DC", url: "" },
+          { name: "Peter Moulton, CFP®", class: "SIF 2013", role: "Financial Advisor / Retirement Planner (Healthcare)", org: "Fountainhead Wealth", location: "Sacramento, California", url: "" }
+        ]
+      },
+      {
+        year: 2012,
+        people: [
+          { name: "Nader Maserwah", class: "SIF 2012", role: "Investment Banking Analyst (prev. Energy Analyst)", org: "Marathon Capital", location: "Chicago, Illinois", url: "" }
+        ]
+      },
+      {
+        year: "Guest Speakers",
+        people: [
+          { name: "Peter Sietsema", class: "Sac State Alum", role: "Senior Portfolio Manager", org: "BlackRock", location: "Vacaville, California", url: "" },
+          { name: "Jeff Leung", class: "Sac State Alum", role: "Portfolio Manager", org: "BlackRock", location: "San Francisco, California", url: "" },
+          { name: "Chris Ailman", class: "Guest Speaker", role: "Chief Investment Officer", org: "CalSTRS", location: "Sacramento, California", url: "" }
+        ]
+      }
+    ];
+
+    // --- Render ---
+    const timeline = document.getElementById('timeline');
+    const count = document.getElementById('count');
+    const q = document.getElementById('q');
+
+    function render(filter=""){
+      timeline.innerHTML = "";
+      const norm = (s)=> s.toLowerCase();
+      let shown = 0;
+
+      for(const section of data){
+        // group wrapper
+        const cluster = document.createElement('div');
+        cluster.className = 'cluster';
+
+        // sticky year label
+        const year = document.createElement('div');
+        year.className = 'year';
+        year.textContent = section.year;
+        cluster.appendChild(year);
+
+        // people cards
+        for(const p of section.people){
+          const text = `${p.name} ${p.class} ${p.role} ${p.org} ${p.location}`.toLowerCase();
+          if(filter && !text.includes(filter)) continue;
+          shown++;
+
+          const card = document.createElement('article');
+          card.className = 'alum';
+          const h = document.createElement('h3');
+          h.innerHTML = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.name}</a>` : p.name;
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.textContent = p.class;
+          const role = document.createElement('div');
+          role.className = 'role';
+          role.textContent = [p.role, p.org].filter(Boolean).join(' — ') + (p.location? ` — ${p.location}`: '');
+          card.appendChild(h); card.appendChild(meta); card.appendChild(role);
+          cluster.appendChild(card);
+        }
+
+        // Only show cluster if it has matching people
+        if(cluster.children.length>1){ // includes the year label
+          timeline.appendChild(cluster);
+        }
+      }
+      count.textContent = `${shown} shown`;
+    }
+
+    q.addEventListener('input', ()=> render(q.value.trim().toLowerCase()));
+    render();
+  </script>
+</body>
+</html>
